@@ -58,9 +58,12 @@ def search_by_email():
 def add_new_applicant():
     conn = establish_connection()
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO applicants (first_name, last_name, phone_number, email, application_code) \
-                    VALUES ('Markus', 'Schaffarzyk', '003620/725-2666', 'djnovus@groovecoverage.com', 54823);")
-    cursor.execute("SELECT * FROM applicants WHERE application_code=54823;")
+    try:
+        cursor.execute("INSERT INTO applicants (first_name, last_name, phone_number, email, application_code) \
+                        VALUES ('Markus', 'Schaffarzyk', '003620/725-2666', 'djnovus@groovecoverage.com', 54823);")
+        cursor.execute("SELECT * FROM applicants WHERE application_code=54823;")
+    except psycopg2.IntegrityError:
+        return [("Duplicate application code found. Writing process cancelled.",)]
     rows = cursor.fetchall()
     cursor.close()
     conn.close()
