@@ -16,7 +16,7 @@ def establish_connection():
 def get_mentors_list():
     conn = establish_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT first_name, last_name FROM mentors;")
+    cursor.execute("SELECT first_name, last_name FROM mentors ORDER BY first_name, last_name;")
     rows = cursor.fetchall()
     cursor.close()
     conn.close()
@@ -26,7 +26,7 @@ def get_mentors_list():
 def get_mentor_nicks():
     conn = establish_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT nick_name FROM mentors WHERE city='Miskolc';")
+    cursor.execute("SELECT nick_name FROM mentors WHERE city='Miskolc' ORDER BY nick_name;")
     rows = cursor.fetchall()
     cursor.close()
     conn.close()
