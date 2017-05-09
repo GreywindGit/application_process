@@ -5,7 +5,7 @@ import dal
 def menu():
     menu_items = ["List of mentors", "Nicknames of mentors by city", "Search applicant by first name",
                   "Search applicant by e-mail address", "New applicant", "Change applicant's data",
-                  "Remove an applicant"]
+                  "Remove an applicant", "Exit program"]
     menu_choice = 0
     while menu_choice not in range(1, len(menu_items)+1):
         os.system('clear')
@@ -31,13 +31,24 @@ def menu():
         table = dal.remove_applicant()
     else:
         pass
-    display_table(table)
+    if menu_choice != 8:
+        display_table(table)
+        restart()
 
 
 def display_table(table):
     os.system('clear')
-    for item in table:
-        print(' '.join([str(x) for x in item]))
+    for row in table:
+        for item in row:
+            print(item, end=' ')
+        print()
+
+
+def restart():
+    input_key = ''
+    while input_key != 'c':
+        input_key = input('Press c to continue...')
+    menu()
 
 
 if __name__ == '__main__':
