@@ -3,7 +3,7 @@ import dal
 
 
 def menu():
-    menu_items = ["List of mentors", "Nicknames of mentors by city", "Search applicant by first name",
+    menu_items = ["List of mentors", "Nicknames of mentors in Miskolc", "Search applicant Carol's phone number",
                   "Search applicant by e-mail address", "New applicant", "Change applicant's data",
                   "Remove an applicant", "Exit program"]
     menu_choice = 0
@@ -34,6 +34,7 @@ def menu():
         header = 'Updated applicant data'
         table = dal.change_applicant_data()
     elif menu_choice == 7:
+        header = ''
         table = dal.remove_applicant()
     else:
         pass
@@ -44,10 +45,11 @@ def menu():
 
 def display_table(table, header=''):
     os.system('clear')
-    print(header)
-    max_row_length = max([len(' '.join(item)) for item in table])
-    separator = max_row_length if max_row_length > len(header) else len(header)
-    print('-' * separator)
+    if header:
+        print(header)
+        max_row_length = max([len(' '.join(item)) for item in table])
+        separator = max_row_length if max_row_length > len(header) else len(header)
+        print('-' * separator)
     for row in table:
         for item in row:
             print(item, end=' ')
