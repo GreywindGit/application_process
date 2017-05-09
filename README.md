@@ -1,1 +1,1 @@
-# application_process
+Exercise for using PostgreSQL with Python
