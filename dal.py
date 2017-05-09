@@ -87,6 +87,3 @@ def remove_applicant():
     cursor.close()
     conn.close()
     return [("Applicant(s) removed from the database",)]
-
-
-
