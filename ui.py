@@ -7,7 +7,7 @@ def menu():
                   "Search applicant by e-mail address", "New applicant", "Change applicant's data",
                   "Remove an applicant"]
     menu_choice = 0
-    while menu_choice not in range(1, len(menu_items)):
+    while menu_choice not in range(1, len(menu_items)+1):
         os.system('clear')
         for index, item in enumerate(menu_items):
             print('{}) {}'.format(index+1, item))
@@ -24,11 +24,11 @@ def menu():
     elif menu_choice == 4:
         table = dal.search_by_email()
     elif menu_choice == 5:
-        pass
+        table = dal.add_new_applicant()
     elif menu_choice == 6:
-        pass
+        table = dal.change_applicant_data()
     elif menu_choice == 7:
-        pass
+        table = dal.remove_applicant()
     else:
         pass
     display_table(table)
@@ -37,7 +37,7 @@ def menu():
 def display_table(table):
     os.system('clear')
     for item in table:
-        print(' '.join(item))
+        print(' '.join([str(x) for x in item]))
 
 
 if __name__ == '__main__':
