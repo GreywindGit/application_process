@@ -47,7 +47,7 @@ def display_table(table, header=''):
     os.system('clear')
     if header:
         print(header)
-        max_row_length = max([len(' '.join(item)) for item in table])
+        max_row_length = max([len(' '.join([str(data) for data in item])) for item in table])
         separator = max_row_length if max_row_length > len(header) else len(header)
         print('-' * separator)
     for row in table:
