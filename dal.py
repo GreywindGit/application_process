@@ -16,7 +16,7 @@ def establish_connection():
 def get_mentors_list():
     conn = establish_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT first_name, last_name FROM mentors")
+    cursor.execute("SELECT first_name, last_name FROM mentors;")
     rows = cursor.fetchall()
     cursor.close()
     conn.close()
@@ -26,7 +26,7 @@ def get_mentors_list():
 def get_mentor_nicks():
     conn = establish_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT nick_name FROM mentors WHERE city='Miskolc'")
+    cursor.execute("SELECT nick_name FROM mentors WHERE city='Miskolc';")
     rows = cursor.fetchall()
     cursor.close()
     conn.close()
@@ -37,7 +37,7 @@ def search_by_first_name():
     conn = establish_connection()
     cursor = conn.cursor()
     cursor.execute("SELECT first_name || ' ' || last_name as full_name, phone_number\
-                    FROM applicants WHERE first_name='Carol'")
+                    FROM applicants WHERE first_name='Carol';")
     rows = cursor.fetchall()
     cursor.close()
     conn.close()
@@ -48,7 +48,7 @@ def search_by_email():
     conn = establish_connection()
     cursor = conn.cursor()
     cursor.execute("SELECT first_name || ' ' || last_name as full_name, phone_number\
-                    FROM applicants WHERE email LIKE '%@adipiscingenimmi.edu'")
+                    FROM applicants WHERE email LIKE '%@adipiscingenimmi.edu';")
     rows = cursor.fetchall()
     cursor.close()
     conn.close()
@@ -56,15 +56,37 @@ def search_by_email():
 
 
 def add_new_applicant():
-    pass
+    conn = establish_connection()
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO applicants (first_name, last_name, phone_number, email, application_code) \
+                    VALUES ('Markus', 'Schaffarzyk', '003620/725-2666', 'djnovus@groovecoverage.com', 54823);")
+    cursor.execute("SELECT * FROM applicants WHERE application_code=54823;")
+    rows = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return rows
 
 
 def change_applicant_data():
-    pass
+    conn = establish_connection()
+    cursor = conn.cursor()
+    cursor.execute("UPDATE applicants SET phone_number='003670/223-7459'\
+                    WHERE first_name='Jemima' AND last_name='Foreman';")
+    cursor.execute("SELECT first_name || ' ' || last_name as full_name, phone_number FROM applicants\
+                    WHERE first_name='Jemima' AND last_name='Foreman';")
+    rows = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return rows
 
 
 def remove_applicant():
-    pass
+    conn = establish_connection()
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM applicants WHERE email LIKE '%@mauriseu.net';")
+    cursor.close()
+    conn.close()
+    return [("Applicant(s) removed from the database",)]
 
 
 
