@@ -1,41 +1,48 @@
 import os
 import dal
+import bll
 
 
 def menu():
-    menu_items = ["List of mentors", "Nicknames of mentors in Miskolc", "Search applicant Carol's phone number",
-                  "Search applicant by e-mail address", "New applicant", "Change applicant's data",
-                  "Remove an applicant", "Exit program"]
+    menu_items = ["List of mentors", "Nicknames of mentors in a city", "Search applicant's phone number by first name",
+                  "Search applicant by e-mail address", "Add new applicant", "Change applicant's phone number",
+                  "Remove applicant(s) by domain", "Exit program"]
     menu_choice = 0
     while menu_choice not in range(1, len(menu_items)+1):
         os.system('clear')
         for index, item in enumerate(menu_items):
             print('{}) {}'.format(index+1, item))
         try:
-            menu_choice = int(input("Choose a menu item: "))
+            menu_choice = int(input("\nChoose a menu item: "))
         except ValueError:
             menu_choice = 0
     if menu_choice == 1:
         header = 'Mentors'
         table = dal.get_mentors_list()
     elif menu_choice == 2:
-        header = 'Nicknames of mentors in Miskolc'
-        table = dal.get_mentor_nicks()
+        city = bll.get_city()
+        header = 'Nicknames of mentors in {}'.format(city)
+        table = dal.get_mentor_nicks(city)
     elif menu_choice == 3:
-        header = 'Carol\'s phone number'
-        table = dal.search_by_first_name()
+        name = bll.get_first_name()
+        header = '{}\'s phone number'.format(name)
+        table = dal.search_by_first_name(name)
     elif menu_choice == 4:
-        header = 'Applicant\'s phone number'
-        table = dal.search_by_email()
+        email = bll.get_email()
+        header = 'Phone number of applicant(s) by (partial) e-mail "{}"'.format(email)
+        table = dal.search_by_email(email)
     elif menu_choice == 5:
-        header = 'New applicants'
-        table = dal.add_new_applicant()
+        applicant = bll.get_new_applicant()
+        header = 'New applicant'
+        table = dal.add_new_applicant(applicant)
     elif menu_choice == 6:
+        updated_applicant = bll.get_changing_applicant()
         header = 'Updated applicant data'
-        table = dal.change_applicant_data()
+        table = dal.change_applicant_data(updated_applicant)
     elif menu_choice == 7:
+        domain = bll.get_domain()
         header = ''
-        table = dal.remove_applicant()
+        table = dal.remove_applicant(domain)
     else:
         pass
     if menu_choice != 8:
@@ -58,9 +65,7 @@ def display_table(table, header=''):
 
 
 def restart():
-    input_key = ''
-    while input_key != 'c':
-        input_key = input('Press c to continue...')
+    input('Press Enter to continue... ')
     menu()
 
 
