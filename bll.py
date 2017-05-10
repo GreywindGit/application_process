@@ -1,5 +1,6 @@
 import dal
 from random import randint
+import re
 
 
 def get_city():
@@ -60,7 +61,7 @@ def get_changing_applicant():
 def get_domain():
     EMAILS = (''.join(item) for item in dal.get_unique_attributes('applicants', 'email'))
     domain = input("Domain name to look for: ")
-    if len(domain) == 0:
+    if not re.match('^[a-zA-Z0-9_]+\.\w{2,4}$', domain):
         return '@mauriseu.net'
     domain = '@' + domain
     return domain
