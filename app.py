@@ -35,5 +35,11 @@ def mentors_by_country():
     return render_template('mentors-by-country.html', menu_items=menu_items, table=result_set)
 
 
+@app.route('/contacts')
+def get_contacts():
+    result_set = bll.get_contacts()
+    return render_template('contacts.html', menu_items=menu_items, table=result_set)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
