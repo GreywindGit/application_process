@@ -48,3 +48,14 @@ def get_applicants():
     return result_set
 
 
+def get_applicants_n_mentors():
+    sql_string = "SELECT applicants.first_name, applicants.application_code, mentors.first_name, mentors.last_name\
+                  FROM applicants\
+                  JOIN applicants_mentors ON applicants.id = applicants_mentors.applicant_id\
+                  LEFT JOIN mentors ON applicants_mentors.mentor_id = mentors.id\
+                  ORDER BY applicants.id;"
+    result_set = dal.get_data_from_table(sql_string)
+    return result_set
+
+
+
