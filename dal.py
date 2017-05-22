@@ -10,7 +10,7 @@ def establish_connection():
                                                                      connection_data['password'])
         conn = psycopg2.connect(connect_str)
         conn.autocommit = True
-    except Exception as e:
+    except psycopg2.DatabaseError as e:
         print("Cannot connect to database.")
         print(e)
     else:
