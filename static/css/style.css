@@ -25,3 +25,22 @@
     background-color: #4CAF50;
     color: white;
 }
+
+
+table, td {
+    border: 1px solid blue;
+}
+
+td {
+    padding: 5px 10px;
+    text-align: center;
+}
+
+tr:hover {
+    background-color: lightblue;
+}
+
+#table-header {
+    background-color: lightblue;
+    font-weight: bold;
+}
