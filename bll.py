@@ -28,3 +28,11 @@ def get_mentors_by_country():
     result_set = dal.get_data_from_table(sql_string)
     return result_set
 
+
+def get_contacts():
+    sql_string = "SELECT schools.name, mentors.first_name, mentors.last_name\
+                  FROM schools\
+                  LEFT JOIN mentors ON schools.contact_person = mentors.id\
+                  ORDER BY schools.name;"
+    result_set = dal.get_data_from_table(sql_string)
+    return result_set
