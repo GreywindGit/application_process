@@ -9,7 +9,11 @@
     <body>
         <div class='topnav' id='top-nav'>
         {% for item in menu_items %}
-            <a href= {{ item[0] }}> {{ item[1] }} </a>
+            {% if item[0] == active_item %}
+            <a href= {{ item[0] }} class='active'> {{ item[1] }} </a>
+            {% else %}
+            <a href= {{ item[0] }} class='inactive'> {{ item[1] }} </a>
+            {% endif %}
         {% endfor %}
         </div>
         {% block content_title %}{% endblock %}

@@ -17,13 +17,13 @@
 
 .topnav a:hover {
     background-color: #ddd;
-    color: black;
+    color: navy;
 }
 
 
 .topnav a.active {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #ddd;
+    color: navy;
 }
 
 
@@ -37,7 +37,7 @@ td {
 }
 
 tr:hover {
-    background-color: lightblue;
+    background-color: lavender;
 }
 
 #table-header {
