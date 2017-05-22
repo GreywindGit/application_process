@@ -45,5 +45,12 @@ def get_contacts():
     return render_template('contacts.html', menu_items=menu_items, table_header=table_header, table=result_set)
 
 
+@app.route('/applicants')
+def get_applicants():
+    table_header = ['First name', 'Application Code', 'Date of Application']
+    result_set = bll.get_applicants()
+    return render_template('applicants.html', menu_items=menu_items, table_header=table_header, table=result_set)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
