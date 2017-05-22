@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block head %}
+        <title>Codecool Application Process - {% block title %}Main Page{% endblock %}</title>
+        <link rel='stylesheet' type='text/css' href='static/css/style.css'>
+        {% endblock %}
+    </head>
+    <body>
+        <div class='topnav' id='top-nav'>
+        {% for item in menu_items %}
+            <a href= {{ item[0] }}> {{ item[1].capitalize() }} </a>
+        {% endfor %}
+        </div>
+        {% block content %}{% endblock %}
+    </body>
+</html>
