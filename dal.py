@@ -4,10 +4,10 @@ from credentials import connection_data
 
 def establish_connection():
     try:
-        connect_str = "{} {} {} {}".format(connection_data['dbname'],
-                                           connection_data['user'],
-                                           connection_data['host'],
-                                           connection_data['password'])
+        connect_str = "dbname={} user={} host={} password={}".format(connection_data['dbname'],
+                                                                     connection_data['user'],
+                                                                     connection_data['host'],
+                                                                     connection_data['password'])
         conn = psycopg2.connect(connect_str)
         conn.autocommit = True
     except Exception as e:
