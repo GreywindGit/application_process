@@ -12,6 +12,23 @@
             <a href= {{ item[0] }}> {{ item[1] }} </a>
         {% endfor %}
         </div>
-        {% block content %}{% endblock %}
+        {% block content_title %}{% endblock %}
+        
+        {% block content_table %}
+        <table>
+            <tr>
+            {% for header_item in table_header %}
+                <td> {{ header_item }} </td>
+            {% endfor %}
+            </tr>
+            {% for row in table %}
+            <tr>
+                {% for field in row %}
+                    <td> {{ field }} </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        {% endblock %}
     </body>
 </html>

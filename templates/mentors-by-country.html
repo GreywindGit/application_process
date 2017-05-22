@@ -2,15 +2,6 @@
 
 {% block title %} Mentors by Country {% endblock %}
 
-{% block content %}
+{% block content_title %}
     <h1> Codecool Mentors by Country </h1>
-    <table>
-        {% for row in table %}
-        <tr>
-            {% for field in row %}
-                <td> {{ field }} </td>
-            {% endfor %}
-        </tr>
-        {% endfor %}
-    </table>
 {% endblock %}
