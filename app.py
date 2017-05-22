@@ -9,7 +9,7 @@ menu_items = [('mentors', 'Mentors'),
               ('mentors-by-country', 'Mentors by Country'),
               ('contacts', 'Contacts'),
               ('applicants', 'Applicants'),
-              ('mentors-and-applicants', 'Mentors and Applicants')]
+              ('applicants-and-mentors', 'Mentors and Applicants')]
 
 
 @app.route('/')
@@ -50,6 +50,13 @@ def get_applicants():
     table_header = ['First name', 'Application Code', 'Date of Application']
     result_set = bll.get_applicants()
     return render_template('applicants.html', menu_items=menu_items, table_header=table_header, table=result_set)
+
+
+@app.route('/applicants-and-mentors')
+def get_applicants_n_mentors():
+    table_header = ['Applicant\'s name', 'Application Code', 'Mentor\'s first name', 'Mentor\'s last name']
+    result_set = bll.get_applicants_n_mentors()
+    return render_template('applicants-and-mentors.html', menu_items=menu_items, table_header=table_header, table=result_set)
 
 
 if __name__ == '__main__':
