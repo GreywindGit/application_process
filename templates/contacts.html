@@ -1,0 +1,16 @@
+{% extends "index.html" %}
+
+{% block title %} Contacts {% endblock %}
+
+{% block content %}
+    <h1> Contact Persons of Codecool Schools </h1>
+    <table>
+        {% for row in table %}
+        <tr>
+            {% for field in row %}
+                <td> {{ field }} </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
