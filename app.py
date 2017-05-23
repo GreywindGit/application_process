@@ -14,7 +14,7 @@ menu_items = [('mentors', 'Mentors'),
 
 @app.route('/')
 def index():
-    return render_template('index.html', menu_items=menu_items)
+    return render_template('index.html', menu_items=menu_items, main_page=True)
 
 
 @app.route('/mentors')
