@@ -44,7 +44,7 @@ h1 {
 
 
 table, td {
-    border: 1px solid blue;
+    border: 1px solid lightblue;
 }
 
 table {
@@ -74,5 +74,5 @@ tr:hover {
 
 @font-face {
     font-family: 'Avenir Book';
-    src: url(./static/font/AvenirLTStd-Book.otf)
+    src: url('/static/font/AvenirLTStd-Book.otf')
 }
